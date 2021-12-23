@@ -1,0 +1,217 @@
+Dictionaries 
+
+-	For this there is the key and the value, and the syntax is {"key": "value"}. 
+-	To append the dictionary, you need the syntax dict[“Pranay”] = “The best coder”
+-	To retrieve the value of a certain key x = dict[“Pranay”]
+-	To change a value of a certain key dict[“Pranay”] = “6 foot 11 alpha male.” If it does not find any value then it will just create a new key with that value.
+-	In a for loop
+
+for thing in dict:
+    print(thing)
+
+It only outputs the key, if you want the actual value then you would want to give this for loop
+
+for thing in dict:
+    print(dict[thing])
+
+This will give the actual value 
+
+Recursion 
+
+This is the idea of a function caling itself
+
+For example:
+
+def hi():
+    print("Hi")
+    choice = input("Do you want to continue?: ")
+    if choice == "y":
+        hi()
+    else:
+        pass
+
+This is an example of recursion because the function calls itself when the input is yes. 
+However you need to be careful when especially using while loops because unless there is a condition that breaks it then it 
+will continue running forever.
+
+Editing global values
+
+If you want to edit some global value inside a function then you will have to mention that it is from the global scope
+
+val = 10
+
+def test():
+    global val
+    val += 1 
+    print(val)
+
+test()
+
+This then outputs 11. However using this is not very good as it means that it is prone to bugs and mistakes. Rather than this 
+you could pass a value in or just return a value
+
+Global scope is a good idea for some values such as constants. This is because you define it at the beginning and never 
+change it from there. The standard for these constants is for them to typed up in capitals so that you know you must never 
+change it. 
+
+For example:
+PI = 3.14
+NAME = "Pranay"
+GENDER = "Male"
+
+Object oriented programming(OOPs)
+
+The regular way that people code is procedureal programming, which is more simple to code but can get hard to code because
+there are so many connections and is hard to maintain
+
+To access ceratain parts of a class, you would have to mention the class name and the method. There is something called the attribute that is 
+effectively a variable that is associated with an object
+
+If you want to name the class then you will want to name is in PascalCase (where the first letter of every word is in capitals.)
+
+For example
+
+class Person:
+    pass
+
+The constructor is used to specify what to make when constructing our object in a specific class. This is called initialize because you set the starting
+values
+
+In order to inherit methods from another class, you will need to use the super() function and also mention the parent class as the attribute for the 
+child class
+
+class Animal():
+    def __init__(self):
+        self.num_eyes = 2
+
+    def breathe(self):
+        print("Inhale, Exhale")
+    
+class Fish(Animal):
+    def __init__(self):
+        super().__init__(self)
+
+    def swim(self):
+        print("Move in water")
+
+nemo = Fish()
+nemo.swim() # Ouputs "Move in water"
+nemo.breathe() Ouputs "Inhale, Exhale" (Method from the Animal class which is the parent class)
+print(nemo.num_eyes) Outputs 2 (Value from the Animal class which is the parent class)
+
+You can edit a method in the child class by using the super() function 
+Ex.
+
+class Fish(Animal):
+    def __init__(self):
+        super().__init__(self):
+    
+    def breathe(self):
+        super().breathe()
+        print("Does this underwater")
+
+Now this outputs 
+"Inhale, Exhale"
+"Does this underwater"
+
+For lists, if you want to get the elements from a certain part of the list then you can slice the list. 
+For example if there is a list:
+list = ["a","b","c","d"]
+
+print(list[1:3])
+It will output "b", "c"
+
+The way it is stored is this:
+
+["a","b","c","d"]
+  |  |   |   |
+  0  1   2   3
+
+The way that it is stored is that the index is stored at the first part of the element. Thats why in 1:3 the 3rd index is not
+included. 
+
+To get all the values before and after an index, you do this
+print(list[:3]) or print(list[3:])
+
+If you set another value print(list[1:4:2]), they go up in incraments of 2
+
+To parse through the entire in an incramen then use print(list[::2])
+
+Files
+To open a file, you have to use file = open("filename.txt")
+To return the contents of that file you do contents = file.read()
+To display it, you can use print(contents)
+You should always close it by file.close() so that the computer does not have more memory taken up.
+So that you do not need to repeatedley open and close the files, you can use the with keyword.
+with open("filename.txt") as file:
+    contents = file.read()
+    print(contents)
+Now you do not need to close the file all the time.
+By default the mode is kept as read only when opening the file, but you can change the mode of the file.
+open("filename.txt", mode = "whatever mode you want")
+"w" = write (This means that all the data in the file is replaced by the new data that you are inputing)
+"a" = append (This means that you are adding new data(To add data to a new line, use \n and then the data))
+"r" = read only (This means that you are only able to read the contents of the file) 
+"x" = create (This means that you can create the file and returns an error if it exists)
+Modes
+"t" = handled in text mode 
+"b" = handled in binary mode (picture format)
+If the file that you are trying to access does not exist and you are in write mode then the computer makes a new text file.
+
+Files can stay in folders
+The working directory is the file or directory that we are currently working on.
+An absolute file path is one where it always contains the root element and the complete directory list to locate the file.
+A relative file path is one where there is a path that is in the current file. To access something in the current file, use 
+./something.txt
+You can step back into the parent folder by using two dots ../something.txt and that will access the text file from the parent
+folder.
+
+CSV
+
+CSV stands for Comma Seperated Vales
+There is a module in python called csv  
+You can read each data by using csv.reader(filename)
+
+You can use pandas to read a lot of data such as csv files
+pandas.read_csv("data_name") would give you the values in the table
+If you want to get a specific column, then you can use print(data["column_name"]) and then you get whatever is in that
+column.
+
+In pandas there are two different types of objects. One is called a data frame and the other is called a series. 
+A data frame is the entire database (ex. a whole excel sheet) and a series is a column 
+You can find the average of a column by using this data["column"].mean()
+This converts it into a list and then averages it.
+You can get the data by also using data.column_name (no need for string) and it will get the values.
+If you want the row then you can use data[data.day == "row_name"]
+
+You can easily convert other forms of data into a database 
+
+Ex. 
+dict = {
+    "students": ["Amy", "James", "Angela"],
+    "scores": ["76", "56", "65"]
+}
+
+To convert to dataframe
+
+data = pandas.DataFrame(dict)
+
+You can convert the data into a csv file by doing this
+data.to_csv("path to file you want to save it to")
+
+List comprehension
+
+You can change every value on a list and make it in a new list by this method
+
+So if you want the list = [1, 2, 3] to have each element increment by one then:
+
+new_list = [n + 1 for n in list]
+
+And then new_list = [2, 3, 4]
+
+There is something called conditional list comprehension when the action occurs only if something is True
+
+For example:
+new_list = [n + 1 for n in list if n == 2]
+
+Dictionary comprehension
